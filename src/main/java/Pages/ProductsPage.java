@@ -26,7 +26,7 @@ public class ProductsPage {
 	}
 	
 	private int pickRandomProductNumber(int maxNo) {
-		Random rand = new Random(maxNo);
+		Random rand = new Random();
 		int randomProductNumber = rand.nextInt(maxNo - 1);
 		return randomProductNumber;
 	}
@@ -36,6 +36,8 @@ public class ProductsPage {
 		List<WebElement> productList = productsContainer.findElements(productItems);
 		int luckyNumber = pickRandomProductNumber(productList.size());
 		WebElement luckyProduct = productList.get(luckyNumber);
+		System.out.println(productList.size());
+		System.out.println(luckyNumber);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", luckyProduct); //scroll to selected product
 		Thread.sleep(1000);
 		return luckyProduct;
